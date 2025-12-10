@@ -1,9 +1,10 @@
 // src/App.jsx
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./App.css";
 
 function App() {
   const [selectedPhoto, setSelectedPhoto] = useState(null);
+  const audioRef = useRef(null);
 
   const photos = [
     { src: "/images/mom1.jpg", caption: "نوروز با بهترین‌ها 💖 مامان و مامان‌بزرگ عزیزم" },
@@ -14,9 +15,31 @@ function App() {
     { src: "/images/mom7.jpg", caption: "مادر همیشه مهربان 🌷" },
   ];
 
+  // Play audio when card is hovered (opened)
+  const handleCardEnter = () => {
+    if (audioRef.current) {
+      audioRef.current.play();
+    }
+  };
+
+  // Pause/rewind when card is closed
+  const handleCardLeave = () => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+    }
+  };
+
   return (
     <div className="app" dir="rtl">
-      <div className="card">
+      {/* Audio element */}
+      <audio ref={audioRef} src="/audio/Alireza Talischi - Madar.mp3" />
+
+      <div 
+        className="card" 
+        onMouseEnter={handleCardEnter} 
+        onMouseLeave={handleCardLeave}
+      >
         <div className="card-front">
           <h1>🌹 روز مادر مبارک 🌹</h1>
           <p>برای دیدن سورپرایز کلیک کن</p>
