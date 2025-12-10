@@ -33,7 +33,7 @@ function App() {
   return (
     <div className="app" dir="rtl">
       {/* Audio element */}
-      <audio ref={audioRef} src="/audio/Alireza Talischi - Madar.mp3" />
+      <audio ref={audioRef} src="/audio/madar.mp3" />
 
       <div 
         className="card" 
